@@ -45,16 +45,22 @@ Improvements
 ^^^^^^^^^^^^
 * **HA support for mmws**: Session handling has been moved from mmws to the Central server. This allows customers to have multiple mmWSs configured for redundancy, region, or load balancing reasons
 * **Multi-factor authentication**: Setup and configuration of multi-factor authentication is now much simpler than before. In the web UI it is now possible to navigate to Admin -> Configuration -> Authentication and there users can configure the fields needed for the integration with Okta (client id, redirect uri, scope etc.) and also test if that configuration is correct
+* **New remote for BIND**: There has been a new remote implemented for BIND which has all the same functionality as the old remote but also allows management of RPZ and dynamic zones
+* **Subscription license**: Handling of license keys has been changed to include subscription keys and allow longer expiration times
 
 Bug fixes
-^^^^^^^^^^^^
-* Resolved an issue where SNMP profiles were not displayed in the table when the number of profiles exceeded a specific threshold.
-* Fixed an issue where records in recently promoted AuthServe zones could not be edited.
-* Addressed an error where the importing of host records for IP addresses would fail.
-* Resolved slowness issues when deleting a zone with a few records from AuthServe. Improved performance when deleting a zone on a Central with a PostgreSQL database.
+^^^^^^^^^
+* Added support for Microsoft ODBC Driver 18 for SQL Server
+* When changing the state of DNS zone from static to dynamic then all existing records are shown correctly, this fixes an issue where the existing records disappeard and then re-appered again in the web UI
+* Reduced the excessive timeout when trying to acquire initial connection to agents
+* Senstive SNMP information is not logged out to the object history
+* Object history entries are now created for the NS record within a DNS zone
+* TTL can now be edited for Akamai Edge record sets in the web UI
+* Server grids in the web UI are now reloaded after synchronization
+* Switching address spaces does now reload service management view in the web UI
 
 Deprecated features
-^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 There are number of features and functionality that are being deprecated in version 11.0. To clarify, this version will be the last one where these feature are guaranteed to work and if necessary there will be patches of 11.0 provided for these features. A feature might continue to work in future major/minor releases as long as the relevant code is present in the Micetro solution but there are no guarantees for that as the code is not officially maintained. Following is a list of the features that are being deprecated
 
 * BIND 9.16 and earlier has been deprecated as as this version has been declared as end of life by ISC in Q1 2024, the same applies for the subscriber edition.
